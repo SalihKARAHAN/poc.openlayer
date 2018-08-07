@@ -1,0 +1,14 @@
+{
+  "name": "openlayer",
+  "version": "1.0.0",
+  "description": "openlayer test",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "openlayer"
+  ],
+  "author": "Salih KARAHAN",
+  "license": "MIT"
+}
