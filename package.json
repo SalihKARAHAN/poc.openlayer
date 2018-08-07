@@ -1,14 +1,22 @@
 {
-  "name": "openlayer",
-  "version": "1.0.0",
-  "description": "openlayer test",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [
-    "openlayer"
-  ],
-  "author": "Salih KARAHAN",
-  "license": "MIT"
+    "name": "openlayer",
+    "version": "1.0.0",
+    "description": "openlayer test",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "parcel index.html",
+        "build": "parcel build --public-url . index.html"
+    },
+    "keywords": [
+        "openlayer"
+    ],
+    "author": "Salih KARAHAN",
+    "license": "MIT",
+    "dependencies": {
+        "ol": "^5.1.3"
+    },
+    "devDependencies": {
+        "parcel-bundler": "^1.9.7"
+    }
 }

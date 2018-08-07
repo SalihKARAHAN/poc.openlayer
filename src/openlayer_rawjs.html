@@ -5,8 +5,8 @@
     <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.1.3/css/ol.css" type="text/css">
     <style>
         .map {
-            height: 400px;
-            width: 100%;
+            height: 800px;
+            width: 800px;
         }
     </style>
     <script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.1.3/build/ol.js"></script>
@@ -14,8 +14,18 @@
 </head>
 
 <body>
-    <h2>My Map</h2>
-    <div id="map" class="map"></div>
+    <div style="width: 50%; float:left;">
+        <h2>My Map</h2>
+        <div id="map" class="map"></div>
+    </div>
+
+    <div style="width: 50%; float:right;">
+        <label>Longitude</label>
+        <input type="text" id="lon" />
+        <label>Latitude</label>
+        <input type="text" id="lat" />
+        <button>Add Marker</button>
+    </div>
     <script type="text/javascript">
         var map = new ol.Map({
             target: 'map', // harita olarak gösterilecek div'in id'si
