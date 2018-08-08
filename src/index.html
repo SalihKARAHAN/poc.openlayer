@@ -16,12 +16,12 @@
             <div id="map" style="float:left; width: 50%"></div>
             <div style="float:right; width: 50%;"></div>
         </section>
-        <aside>
-
+        <aside id="log-area" style="width: 100%; background-color: lightgray; float: left; height: 300px; overflow:scroll;">
         </aside>
     </div>
     <script src="../scripts/ol.js"></script>
     <script type="text/javascript">
+        window.LOGAREA = document.getElementById("log-area");
         var vectorSource = new ol.source.Vector({});
 
         var hqMarketLocation = new ol.Feature({
@@ -30,6 +30,18 @@
             population: 4000,
             rainfall: 500
         });
+
+        // for (var i = 1; i < 299; i++) {
+        //     var iconFeature = new ol.Feature({
+        //         geometry: new
+        //         ol.geom.Point(ol.proj.transform([Math.random() * 360 - 180, Math.random() * 180 - 90], 'EPSG:4326', 'EPSG:3857')),
+        //         name: 'Market ' + i,
+        //         population: 4000,
+        //         rainfall: 500
+        //     });
+
+        //     vectorSource.addFeature(iconFeature);
+        // }
 
         vectorSource.addFeature(hqMarketLocation);
 
@@ -68,8 +80,25 @@
         });
 
         // ---------------- HARITA OLAYLARI -------------
-        map.on('click', function() {
-            console.log(arguments);
+        map.on('click', function(event) {
+            var label = document.createElement("label");
+            label.appendChild(document.createTextNode("click: [0]=" + event.coordinate[0] + " [1]=" + event.coordinate[1]))
+            window.LOGAREA.prepend(document.createElement("br"));
+            window.LOGAREA.prepend(label);
+        });
+
+        map.on('pointerdrag', function(event) {
+            var label = document.createElement("label");
+            label.appendChild(document.createTextNode("pointerdrag: [0]=" + event.coordinate[0] + " [1]=" + event.coordinate[1]))
+            window.LOGAREA.prepend(document.createElement("br"));
+            window.LOGAREA.prepend(label);
+        });
+
+        map.on('pointermove', function(event) {
+            var label = document.createElement("label");
+            label.appendChild(document.createTextNode("pointermove: [0]=" + event.coordinate[0] + " [1]=" + event.coordinate[1]))
+            window.LOGAREA.prepend(document.createElement("br"));
+            window.LOGAREA.prepend(label);
         });
     </script>
 </body>
