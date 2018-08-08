@@ -19,7 +19,21 @@ jQuery(document).ready(function() {
         if (value !== 'None') {
             draw = new ol.interaction.Draw({
                 source: drawingSource,
-                type: typeSelect.value
+                type: typeSelect.value,
+
+            });
+
+            draw.on('drawend', function(event) {
+                debugger;
+                var lastFeature = drawingLayer.getSource().getFeatures();
+                lastFeature.forEach(function(feature) {
+                    console.log(feature.getGeometry().getCoordinates());
+                });
+
+                // var label = document.createElement("label");
+                // label.appendChild(document.createTextNode("drawn: [0]=" + event.coordinate[0] + " [1]=" + event.coordinate[1]))
+                // window.LOGAREA.prepend(document.createElement("br"));
+                // window.LOGAREA.prepend(label);
             });
 
             map.addInteraction(draw);
