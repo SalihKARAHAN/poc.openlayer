@@ -22,12 +22,43 @@
     </div>
     <script src="../scripts/ol.js"></script>
     <script type="text/javascript">
+        debugger;
+        var vectorSource = new ol.source.Vector({});
+
+        var hqMarketLocation = new ol.Feature({
+            geometry: new ol.geom.Point(ol.proj.transform([28.895751, 41.050335], 'EPSG:4326', 'EPSG:3857')),
+            name: 'Market HQ',
+            population: 4000,
+            rainfall: 500
+        });
+
+        vectorSource.addFeature(hqMarketLocation);
+
+        var hqMarketIcon = new ol.style.Style({
+            image: new ol.style.Icon(({
+                anchor: [0.5, 50],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'pixels',
+                opacity: '1',
+
+                //https://gis.stackexchange.com/questions/130603/how-to-resize-a-feature-and-prevent-it-from-scaling-when-zooming-in-openlayers-3
+                // 
+                scale: 0.05,
+                src: '../img/050-shop.png'
+            }))
+        });
+
+        var hqMarketVectorLayer = new ol.layer.Vector({
+            source: vectorSource,
+            style: hqMarketIcon
+        });
+
         var map = new ol.Map({
             target: 'map',
             layers: [
                 new ol.layer.Tile({
                     source: new ol.source.OSM()
-                })
+                }), hqMarketVectorLayer
             ],
             view: new ol.View({
                 // BingMap'ten alınan koordinat 41,050335, 28,895751 
