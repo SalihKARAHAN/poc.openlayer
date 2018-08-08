@@ -72,35 +72,12 @@
             window.LOGAREA = document.getElementById("log-area");
 
 
-            var drawingSource = new ol.source.Vector({
-                wrapX: false
-            });
-
-            var drawingLayer = new ol.layer.Vector({
-                source: drawingSource
-            });
-
-            var typeSelect = document.getElementById('type');
-
-            var draw;
-
-            var addInteraction = function() {
-                var value = typeSelect.value;
-                if (value !== 'None') {
-                    draw = new ol.interaction.Draw({
-                        source: drawingSource,
-                        type: typeSelect.value
-                    });
-
-                    map.addInteraction(draw);
-                }
-            }
 
 
-            typeSelect.onchange = function() {
-                map.removeInteraction(draw);
-                addInteraction();
-            }
+
+
+
+
 
 
             var map = new ol.Map({
@@ -117,9 +94,9 @@
                     zoom: 10
                 })
             });
+            $('#map').data('map', map);
+            debugger;
 
-            map.addLayer(drawingLayer);
-            addInteraction();
 
             var popupOverlay = new ol.Overlay({
                 element: document.getElementById("popup"),
@@ -137,7 +114,6 @@
                     window.LOGAREA.prepend(label);
                 }
 
-                debugger;
                 $popup = $('#popup');
                 var clickedFeature = map.forEachFeatureAtPixel(event.pixel, function(feature) {
                     return feature;
