@@ -19,6 +19,16 @@
                 <label>pointerdrag</label> <input id="map_pointerdrag" type="checkbox" /><br />
                 <label>pointermove</label> <input id="map_pointermove" type="checkbox" /><br />
             </div>
+            <div id="draw-selection">
+                <label>Geometry type &nbsp;</label>
+                <select id="type">
+                      <option value="Point">Point</option>
+                      <option value="LineString">LineString</option>
+                      <option value="Polygon">Polygon</option>
+                      <option value="Circle">Circle</option>
+                      <option value="None">None</option>
+                    </select>
+            </div>
         </section>
         <section id="content">
             <div id="map" style="float:left; width: 50%">
@@ -61,6 +71,38 @@
 
             window.LOGAREA = document.getElementById("log-area");
 
+
+            var drawingSource = new ol.source.Vector({
+                wrapX: false
+            });
+
+            var drawingLayer = new ol.layer.Vector({
+                source: drawingSource
+            });
+
+            var typeSelect = document.getElementById('type');
+
+            var draw;
+
+            var addInteraction = function() {
+                var value = typeSelect.value;
+                if (value !== 'None') {
+                    draw = new ol.interaction.Draw({
+                        source: drawingSource,
+                        type: typeSelect.value
+                    });
+
+                    map.addInteraction(draw);
+                }
+            }
+
+
+            typeSelect.onchange = function() {
+                map.removeInteraction(draw);
+                addInteraction();
+            }
+
+
             var map = new ol.Map({
                 target: 'map',
                 layers: [
@@ -75,6 +117,9 @@
                     zoom: 10
                 })
             });
+
+            map.addLayer(drawingLayer);
+            addInteraction();
 
             var popupOverlay = new ol.Overlay({
                 element: document.getElementById("popup"),
@@ -131,6 +176,7 @@
 
         });
     </script>
+    <script src="drawing.js"></script>
 </body>
 
 </html>
