@@ -1,6 +1,5 @@
 jQuery(document).ready(function() {
 
-    debugger;
     var map = $('#map').data('map');
 
     var drawingSource = new ol.source.Vector({
@@ -8,7 +7,8 @@ jQuery(document).ready(function() {
     });
 
     var drawingLayer = new ol.layer.Vector({
-        source: drawingSource
+        source: drawingSource,
+        key: 'drawingLayer'
     });
 
     var typeSelect = document.getElementById('type');

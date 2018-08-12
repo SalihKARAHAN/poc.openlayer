@@ -36,5 +36,6 @@ var hqMarketIcon = new ol.style.Style({
 
 var marketVectorLayer = new ol.layer.Vector({
     source: vectorSource,
-    style: hqMarketIcon
+    style: hqMarketIcon,
+    key: 'marker-layer'
 });

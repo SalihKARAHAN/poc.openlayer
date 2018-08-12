@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="../styles/ol.css"></link>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="../styles/demo.css"></link>
 </head>
 
 <body>
@@ -26,7 +28,7 @@
                       <option value="LineString">LineString</option>
                       <option value="Polygon">Polygon</option>
                       <option value="Circle">Circle</option>
-                      <option value="None">None</option>
+                      <option value="None" selected>None</option>
                     </select>
             </div>
         </section>
@@ -34,7 +36,30 @@
             <div id="map" style="float:left; width: 50%">
                 <div id="popup"></div>
             </div>
-            <div style="float:right; width: 50%;"></div>
+            <div style="float:right; width: 50%;">
+
+                <div class="marker-container" style="width: 50px;">
+                    <div class="marker">
+                        <img src="../img/010-chat.png" width="50" height="50" />
+                    </div>
+                    <div class="marker">
+                        <img src="../img/021-delivery-truck-1.png" width="50" height="50" />
+                    </div>
+                    <div class="marker">
+                        <img src="../img/022-delivery-truck.png" width="50" height="50" />
+                    </div>
+                    <div class="marker">
+                        <img src="../img/046-price-down.png" width="50" height="50" />
+                    </div>
+                    <div class="marker">
+                        <img src="../img/047-price-up.png" width="50" height="50" />
+                    </div>
+                    <div class="marker">
+                        <img src="../img/050-shop.png" width="50" height="50" />
+                    </div>
+                </div>
+
+            </div>
         </section>
         <aside id="log-area" style="width: 100%; background-color: lightgray; float: left; height: 300px; overflow:scroll;">
         </aside>
@@ -71,14 +96,10 @@
 
             window.LOGAREA = document.getElementById("log-area");
 
-
-
-
-
-
-
-
-
+            $('.marker').click(function(event) {
+                $('.marker').removeClass('selected-marker');
+                $(this).addClass('selected-marker');
+            })
 
             var map = new ol.Map({
                 target: 'map',
@@ -94,9 +115,8 @@
                     zoom: 10
                 })
             });
-            $('#map').data('map', map);
-            debugger;
 
+            $('#map').data('map', map);
 
             var popupOverlay = new ol.Overlay({
                 element: document.getElementById("popup"),
@@ -153,6 +173,7 @@
         });
     </script>
     <script src="drawing.js"></script>
+    <script src="add-marker-to-clicked-point.js"></script>
 </body>
 
 </html>
