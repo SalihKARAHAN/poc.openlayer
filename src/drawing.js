@@ -15,6 +15,7 @@ jQuery(document).ready(function() {
 
     var draw;
     var addInteraction = function() {
+        debugger;
         var value = typeSelect.value;
         if (value !== 'None') {
             draw = new ol.interaction.Draw({
@@ -37,6 +38,8 @@ jQuery(document).ready(function() {
             });
 
             map.addInteraction(draw);
+        } else {
+            draw = null;
         }
     }
 
